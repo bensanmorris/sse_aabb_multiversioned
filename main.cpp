@@ -69,7 +69,7 @@ void UpdateAABB(Vector3 min_, Vector3 max_, Vector3 T_, Matrix3 mtx_, Vector3& n
 
     // bX = mtx[0]*localMax[0];
     __m128 local_maxx = _mm_set1_ps(((Vector4SIMD*)(&local_max))->data[0]);
-    __m128 bx = _mm_mul_ps((*(__m128*)&mtx[0]), local_max);
+    __m128 bx = _mm_mul_ps((*(__m128*)&mtx[0]), local_maxx);
 
     // aY = mtx[1]*localMin[1];
     __m128 local_miny = _mm_set1_ps(((Vector4SIMD*)(&local_min))->data[1]);
