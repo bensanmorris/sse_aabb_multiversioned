@@ -20,3 +20,6 @@ To verify the SSE variant is executed run on a machine with SSE support and put 
 - Function multi-versioning: https://gcc.gnu.org/wiki/FunctionMultiVersioning
 - Intel intrinsics guide: https://software.intel.com/sites/landingpage/IntrinsicsGuide/#
 - Intel assembler guide: https://software.intel.com/sites/default/files/managed/a4/60/325383-sdm-vol-2abcd.pdf
+
+### Notes
+If OpenCV is anything to go by, it (OpenCV) assumes (up to) SSE3 support as being standard on all x86_64 platforms [By default, OpenCV on x86_64 uses SSE3 as basic instruction set and enables dispatched optimizations for SSE4.2, AVX, AVX2 instruction sets. ](https://github.com/opencv/opencv/wiki/CPU-optimizations-build-options). Given hand-rolled SSE code has the potential to achieve 4x performance gains over non-SSE code (or at least 2x as compared to auto-vectorised compiler generated code) then it's a great option without requiring any cpuid querying / cpu-dispatching in other words just assume SSE is present on x86_64 (which is handy as MSVC doesn't support multiversioning at the time of writing).
