@@ -113,7 +113,7 @@ void UpdateAABB(Vector3 min_, Vector3 max_, Vector3 T_, Matrix3 mtx_, Vector3& n
     newMax_.z = newMax.data[2];
 }
 
-static void benchmark_normal(picobench::state& s)
+static void benchmark_aabb(picobench::state& s)
 {
     static const Vector3 min { 1.f, 2.f, 3.f };
     static const Vector3 max { 2.f, 3.f, 4.f };
@@ -126,19 +126,5 @@ static void benchmark_normal(picobench::state& s)
         UpdateAABB(min, max, t, mtx, newMin, newMax);
     }
 }
-PICOBENCH(benchmark_normal);
+PICOBENCH(benchmark_aabb);
 
-static void benchmark_simd(picobench::state& s)
-{
-    static const Vector3 min { 1.f, 2.f, 3.f };
-    static const Vector3 max { 2.f, 3.f, 4.f };
-    static const Matrix3 mtx { 1.f };
-    static const Vector3 t   {};
-
-    Vector3 newMin, newMax;
-    for(auto _ : s)
-    {
-        UpdateAABB(min, max, t, mtx, newMin, newMax);
-    }
-}
-PICOBENCH(benchmark_simd);
